@@ -81,7 +81,7 @@ const BrainScene = () => {
   
   // Controle de polling manual
   const manualOverrideRef = useRef(false);
-  const overrideTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const overrideTimeoutRef = useRef(null);
 
   const [paused, setPaused]             = useState(false);
   const [speed, setSpeed]               = useState(1);
@@ -479,7 +479,7 @@ const BrainScene = () => {
     <div ref={mountRef} style={{ width: '100vw', height: '100vh', position: 'relative', background: '#050510' }}>
       <HUD
         neuronCount={NUM_NEURONS} spikeRate={spikeRate} activityRate={activityRate}
-        thought={thought} paused={paused} onPauseToggle={() => setPaused(p => !p)}
+        thought={thought} paused={paused} onPauseToggle={() => setPaused((p: boolean) => !p)}
         onSpeedChange={setSpeed} speed={speed} onSetThought={handleSetThought}
       />
     </div>
